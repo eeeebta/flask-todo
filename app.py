@@ -34,10 +34,16 @@ def home():
 
 
 # Methods/[post/get] is also a concept I think we looked at
+# Request objects are also being used here
+
+# Unsure what this concept would be called, but creating
+# an object and then automatically adding it to the database
+# is not something we talked about, but seems pretty unique
+# /I have not seen it in other languages
 @app.route('/add', methods=['POST'])
 def add():
     title = request.form.get('title')
-    new_todo = Todo(title=title)
+    new_todo = Todo(title=title, completed=False)
     db.session.add(new_todo)
     db.session.commit()
     return redirect('/')
